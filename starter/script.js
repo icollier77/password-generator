@@ -116,7 +116,7 @@ function getPasswordOptions() {
   } else if(hasSpecialChars === "no" || hasSpecialChars === "n") {
     charOptions;
   };
-  const hasUpperCase = prompt("Incluse upper case letters?").toLowerCase();
+  const hasUpperCase = prompt("Include upper case letters?").toLowerCase();
   if(hasUpperCase === "yes" || hasUpperCase === "y"){
     charOptions = charOptions.concat(upperCasedCharacters)
   } else if (hasUpperCase === "no" || hasUpperCase === "n"){

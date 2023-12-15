@@ -12,7 +12,6 @@ The following image shows the web application's appearance and functionality:
 
 ![password generator demo](./assets/05-javascript-challenge-demo.png)
 
-
 * Generate a password when the button is clicked
   * Present a series of prompts for password criteria
     * Length of password
@@ -27,7 +26,7 @@ The following image shows the web application's appearance and functionality:
 
 ## Grading Requirements
 
-This challenge is graded based on the following criteria: 
+This challenge is graded based on the following criteria:
 
 ### Technical Acceptance Criteria: 40%
 
@@ -64,7 +63,6 @@ This challenge is graded based on the following criteria:
 * Repository contains multiple descriptive commit messages.
 
 * Repository contains quality README file with description, screenshot, and link to deployed application.
-
 
 ## Review
 
