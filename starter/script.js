@@ -88,54 +88,68 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// Variables to be used in functions
 let passwordLength = 0;
 let charOptions = [];
-const generatedPassword = '';
+let generatedPassword = '';
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  // get the password length
   passwordLength = parseInt(prompt("Enter password's length."));
   if(passwordLength < 8 || passwordLength > 128) {
     getPasswordOptions();
   };
-  const hasSpecialChars = prompt("Use special characters?").toLowerCase();
-  if(hasSpecialChars === "yes" || hasSpecialChars === "y") {
-    charOptions = charOptions.concat(specialCharacters);
-  } else if(hasSpecialChars === "no" || hasSpecialChars === "n") {
-    charOptions;
-  };
+  // check if to include special characters
+  const hasSpecialChars = prompt("Use special characters?").toLowerCase()
+    if (hasSpecialChars === "yes" || hasSpecialChars === "y") {
+      charOptions = charOptions.concat(specialCharacters);
+    } else if (hasSpecialChars === "no" || hasSpecialChars === "n") {
+      charOptions;
+    } else alert('Use only "Yes" or "No" to answer!');
+  // check if to include numbers
   const hasNumbers = prompt("Use numbers?").toLowerCase();
-  if (hasNumbers === "yes" || hasNumbers === "n") {
-    charOptions = charOptions.concat(numericCharacters);
-  } else if(hasSpecialChars === "no" || hasSpecialChars === "n") {
-    charOptions;
-  };
+    if (hasNumbers === "yes" || hasNumbers === "y") {
+      charOptions = charOptions.concat(numericCharacters);
+    } else if (hasSpecialChars === "no" || hasSpecialChars === "n") {
+      charOptions;
+    } else alert('Use only "Yes" or "No" to answer!');
+  // check if to include lower case letters
   const hasLowerCase = prompt("Include lower case letters?").toLowerCase();
-  if(hasLowerCase === "yes" || hasLowerCase === "y"){
+  if (hasLowerCase === "yes" || hasLowerCase === "y"){
     charOptions = charOptions.concat(lowerCasedCharacters);
-  } else if(hasSpecialChars === "no" || hasSpecialChars === "n") {
+  } else if (hasSpecialChars === "no" || hasSpecialChars === "n") {
     charOptions;
-  };
+  } else alert('Use only "Yes" or "No" to answer!');
+  // check if to include upper case letters
   const hasUpperCase = prompt("Include upper case letters?").toLowerCase();
-  if(hasUpperCase === "yes" || hasUpperCase === "y"){
+  if (hasUpperCase === "yes" || hasUpperCase === "y"){
     charOptions = charOptions.concat(upperCasedCharacters)
   } else if (hasUpperCase === "no" || hasUpperCase === "n"){
     charOptions;
-  }
+  } else alert('Use only "Yes" or "No" to answer!');
 }
 
+// Ask user for the password options
 getPasswordOptions();
 
-
 // Function for getting a random element from an array
-// function getRandom(arr) {
-
-// }
+function getRandom(arr) {
+  return Math.floor(Math.random() * arr.length + 1);
+}
 
 // Function to generate password with user input
-// function generatePassword() {
+function generatePassword() {
+  for (let i = 0; i < passwordLength; i++) {
+    let indexToChoose = getRandom(charOptions);
+    generatedPassword = generatedPassword.concat(charOptions[indexToChoose]);
+  }
+  return generatedPassword;
+}
 
-// }
+// generate a new password
+generatePassword();
+alert(`Your password is ${generatedPassword}`);
 
 // Get references to the #generate element
 // var generateBtn = document.querySelector('#generate');
