@@ -65,9 +65,9 @@ The goal of this project is practice intermediate JavaScript skills (especially 
 
 ### Project Specifications
 
-<p>The task for this challenges outlined the following requirements.</p>
+<p>The task for this challenges outlined the following requirements:</p>
 
-<p><b>Your application must:</b></p>
+<p><b>The application must:</b></p>
 <ol>
   <li>Generate a password when the button is clicked.</li>
   <li>Present a series of prompts for password criteria:</li>
@@ -107,7 +107,7 @@ Basic data was provided (such as arrays of character types). I wrote the code in
 <!-- The build process -->
 ## Development
 
-I had 2 iterations of working on the assignment. First, I created an app where all character types were joined in a mega-array and a password was randomly generated from it. When testing this solution, I realized that this approach did not guarantee that at least one character from each selected character set would be included in the generated password.
+I had 2 iterations of the code for the assignment. First, I created an app where all character types were joined in a mega-array and a password was randomly generated from it. When testing this solution, I realized that this approach did not guarantee that at least one character from each selected character set would be included in the generated password.
 
 ### Important source
 So I changed my approach. This [video][password-video] was very helpful in directing my thinking. I also used parts of the code mentioned in that video in my solution.
@@ -117,11 +117,11 @@ So I changed my approach. This [video][password-video] was very helpful in direc
 
 ### Different logical approach
 
-However, as the assignment specifications were quite different from this video, my solution diverged significantly. I had to ask the user for input (which character sets to use) and therefore, had to 1) validate the input; 2) loop if no valid input is provided.
+However, as the assignment specifications were quite different from this video, my solution diverged significantly. I had to ask the user for input (i.e., which character sets to use) and therefore, had to 1) validate the input; 2) loop if no valid input is provided.
 
 ### Adding randomization
 
-I also did not like that all character sets, when joined together in a mega-array, still have a predictable structure. So I used the [code snippet 446][shuffle-array-url] from StackOverflow to create a function that would **randomize the mega-array** before the application picks additional characters from it to reach the specify password length.
+I also did not like that all character sets, when joined together in a mega-array, still had a predictable structure. So I used the [code snippet 446][shuffle-array-url] from StackOverflow to create a function that would **randomize the mega-array** before the application picks additional characters from it to reach the specified password length.
 
 The next problem I encountered was that while the generated password had the specified length, and its second part was generated from a randomized array, the first part still followed a predictable structure. So, I created one more function using [code snippet 64][shuffle-string-url] to **re-shuffle the password string** 10 times to ensure that the password order could not be guessed.
 
@@ -129,7 +129,7 @@ The next problem I encountered was that while the generated password had the spe
 
 I broke each set of actions into a function, trying to balance modular approach and the DRY principle. Then I united 4 functions in a single function `createPassword()` and connected it to the html `button` element.
 
-The modular approach allows for easier testing and debugging during development and also helps for anyone else to see the logic flow.
+The modular approach allows for easier testing and debugging during development and also helps anyone else to see the logic flow.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
