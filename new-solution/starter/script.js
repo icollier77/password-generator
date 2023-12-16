@@ -91,30 +91,39 @@ const upperCasedCharacters = [
 // SET THE VARIABLES
 var initialPassword = '';
 var finalPassword = '';
+var shuffledPassword = '';
 var passwordLength = 0;
 var charOptions = [];
-let newCharOptions = [];
+var newCharOptions = [];
+const passwordBox = document.getElementById("password");
 
+
+
+function createPassword(){
 // #1 GET THE PASSWORD OPTIONS AND GENERATE BEGINNING OF PASSWORD, CREATE MEGA-ARRAY
 getPasswordOptions();
-
 // #2 RANDOMIZE THE MEGA-ARRAY
 newCharOptions = randomizeArray(charOptions);
-
 // #3 FINISH THE PASSWORD GENERATION
 finalPassword = finishPassword();
-
-// SHUFFLE THE PASSWORD AGAIN
-// shuffledPassword = randomizeArray(initialPassword);
-
+// SHUFFLE THE PASSWORD
+shuffledPassword = randomizeString(finalPassword);
+passwordBox.value = shuffledPassword;
+};
 
 // Function to prompt user for password options
 function getPasswordOptions() {
   // get the password length
-  passwordLength = parseInt(prompt("What is the password length? Enter a number between 8 and 128."));  
-  if(passwordLength < 8 || passwordLength > 128) {
-    getPasswordOptions();
-  };
+  do {
+  passwordLength = parseInt(prompt("What is the password length? Enter a number between 8 and 128."));
+    if (isNaN(passwordLength)) {
+      alert("Please enter a number")
+    } else if (passwordLength < 8) {
+      alert("The number is too low")
+    } else if (passwordLength > 128) {
+      alert("The number is too high")
+    };
+  } while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength));
   // Loop if all answers are No, i.e. generated password length = 0
   // The process for each character type has 2 steps:
   // 1. check whether to include the character type in the password 
@@ -142,6 +151,9 @@ function getPasswordOptions() {
 function askForCharOptions (question) {
   do {
     var answer = prompt(question).toLowerCase();
+    if (answer !== "yes" && answer !== "y" && answer !== "no" && answer !== "n") {
+      alert("Please answer with Yes or No! And Y and N are also ok.")
+    }
   } while (answer !== "yes" && answer !== "y" && answer !== "no" && answer !== "n");
   return answer;
 };
@@ -151,10 +163,7 @@ function addChar (answer, arr) {
   if (answer === "yes" || answer === "y") {
     initialPassword += arr[Math.floor(Math.random() * arr.length)];
     charOptions = charOptions.concat(arr);
-  } else if (answer === "no" || answer === "n") {
-    charOptions;
-  } 
-  // else alert("Use only 'Yes/Y' or 'No/N' to answer!");
+  };
 };
 
 // Function to shuffle (randomize) an array 
@@ -172,16 +181,25 @@ function finishPassword() {
   let newPassword = initialPassword;
   while (passwordLength > newPassword.length) {
     newPassword += newCharOptions[Math.floor(Math.random() * newCharOptions.length)];
-    // randomizeArray(password);
-    console.log(`The password after adding additional characters from mega-array is ${initialPassword}`)
-    return newPassword;
   };
+  return newPassword;
 };
 
+// Function to re-shuffle the password to break the order of the initially generated part of password
+// code from snippet 64 on https://stackoverflow.com/questions/3943772/how-do-i-shuffle-the-characters-in-a-string-in-javascript 
+function randomizeString (str) {
+  let newStr = str;
+  for (let i = 0; i < 10; i++) {
+  newStr = str.split('').sort(function(){return 0.5-Math.random()}).join('')
+  };
+  return newStr;
+}
+
 // VALIDATION CHECKS
-console.log(`The password length is ${passwordLength}`);
-console.log(`Initial password length is ${initialPassword.length}`);
-console.log(`The initial password is ${initialPassword}`);
-console.log(`The unshuffled characters for the password are: ${charOptions}`)
-console.log(`The shuffled characters for the password are: ${newCharOptions}`)
-console.log(`The final password is ${finalPassword}`);
+// console.log(`The password length is ${passwordLength}`);
+// console.log(`Initial password length is ${initialPassword.length}`);
+// console.log(`The initial password is ${initialPassword}`);
+// console.log(`The unshuffled characters for the password are: ${charOptions}`)
+// console.log(`The shuffled characters for the password are: ${newCharOptions}`)
+// console.log(`The final password is ${finalPassword}`);
+// console.log(`The shuffled password is ${shuffledPassword}`);
