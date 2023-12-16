@@ -36,11 +36,17 @@ Assignment 5 of the [Front-End Web Dev bootcamp][bootcamp-url] to create a passw
       <ul>
         <li><a href="#project-goal">Project Goal</a></li>
         <li><a href="#project-specifications">Project Specifications</a></li>
-        <li><a href="#sample-result">Sample Result</a></li>
+        <li><a href="#sample-app">Sample App</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
     <li><a href="#development">Development</a></li>
+      <ul>
+        <li><a href="important-source">Important Source</a></li>
+        <li><a href="different-logical-approach">Different Logical Approach</a></li>
+        <li><a href="adding-randomization">Adding Randomization</a></li>
+        <li><a href="modular-functions">Modular Functions</a></li>
+      </ul>
     <li><a href="#deployed-project">Deployed Project</a></li>
       <ul>
         <li><a href="#deployed-application">Deployed Application</a></li>
