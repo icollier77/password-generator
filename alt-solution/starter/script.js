@@ -88,85 +88,100 @@ const upperCasedCharacters = [
   'Z'
 ];
 
-// code from https://www.youtube.com/watch?v=Xrsb9SiF3a8 
-const passwordBox = document.getElementById('password');
-
-var newPassword = '';
-
+// SET THE VARIABLES
+var initialPassword = '';
+var finalPassword = '';
 var passwordLength = 0;
-
 var charOptions = [];
+let newCharOptions = [];
 
-// RUN THE FUNCTION
+// #1 GET THE PASSWORD OPTIONS AND GENERATE BEGINNING OF PASSWORD, CREATE MEGA-ARRAY
 getPasswordOptions();
 
-// DELETE LATER
-console.log(`The new password is ${newPassword}`);
-console.log(`The list of characters for the new password is: ${charOptions}`)
+// #2 RANDOMIZE THE MEGA-ARRAY
+newCharOptions = randomizeArray(charOptions);
+
+// #3 FINISH THE PASSWORD GENERATION
+finalPassword = finishPassword();
+
+// SHUFFLE THE PASSWORD AGAIN
+// shuffledPassword = randomizeArray(initialPassword);
 
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  passwordLength = parseInt(prompt("What is the password length? Enter numbers only. Hint: password must be between 8 and 128 characters."));  
+  // get the password length
+  passwordLength = parseInt(prompt("What is the password length? Enter a number between 8 and 128."));  
   if(passwordLength < 8 || passwordLength > 128) {
     getPasswordOptions();
   };
-  // DELETE LATER
-  console.log(`New password length is ${newPassword.length}`);
-
-  // loop the questions about special char if all answers are invalid
-    while (newPassword.length = 0) {
-      // 1. check whether to include various character options in the password 
-      // 2. run the function to generate 1 character from each selected set and add the set to the list of permissible characters
-      let hasSpecialChars = prompt("Include special numbers?").toLowerCase();
+  // Loop if all answers are No, i.e. generated password length = 0
+  // The process for each character type has 2 steps:
+  // 1. check whether to include the character type in the password 
+  // 2. if yes, generate 1 character from this type, add to the password, then add the character set to the mega-array
+    do {
+      // check if include special characters
+      let hasSpecialChars = askForCharOptions("Include special characters? Yes or No");
       addChar(hasSpecialChars, specialCharacters);
-      let hasNumbers = prompt("Include numbers?").toLowerCase();
+      // check if include numbers
+      let hasNumbers = askForCharOptions("Include numbers? Yes or No");
       addChar(hasNumbers, numericCharacters);
-      let hasLowerCase = prompt("Include lower case letters?").toLowerCase();
+      // check if include lower case letters
+      let hasLowerCase = askForCharOptions("Include lower case letters? Yes or No");
       addChar(hasLowerCase, lowerCasedCharacters);
-      let hasUpperCase = prompt("Include upper case letters?").toLowerCase();
+      // check if include upper case letters
+      let hasUpperCase = askForCharOptions("Include upper case letters? Yes or No");
       addChar(hasUpperCase, upperCasedCharacters);
-      // if user provided invalid inputs to all questions, tell that the password is not generated, try again
-      if (passwordLength = 0) {
-        alert("The password is not generated, please provide valid answers to the questions.");
-      }
-    }
-  // function to DRY repetitions for character options
-  function addChar (check, arr) {
-    if (check === "yes" || check === "y") {
-      newPassword += arr[Math.floor(Math.random() * arr.length)];
-      charOptions = charOptions.concat(arr);
-    } else if (check === "no" || check === "n") {
-      charOptions;
-    } else alert("Use only 'Yes/Y' or 'No/N' to answer!");
+      if (initialPassword.length === 0) {
+        alert("Please provide at least one character type!")
+      }; 
+    } while (initialPassword.length === 0);
+};
+
+// Function to ask user whether to include character type (step 1)
+function askForCharOptions (question) {
+  do {
+    var answer = prompt(question).toLowerCase();
+  } while (answer !== "yes" && answer !== "y" && answer !== "no" && answer !== "n");
+  return answer;
+};
+
+// Function to generate a character from a set, add to password, add the character set to the mega-array (step 2)
+function addChar (answer, arr) {
+  if (answer === "yes" || answer === "y") {
+    initialPassword += arr[Math.floor(Math.random() * arr.length)];
+    charOptions = charOptions.concat(arr);
+  } else if (answer === "no" || answer === "n") {
+    charOptions;
+  } 
+  // else alert("Use only 'Yes/Y' or 'No/N' to answer!");
+};
+
+// Function to shuffle (randomize) an array 
+// (based on the code snippet 446 from https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+function randomizeArray(unshuffledArray) {
+  let shuffledArray = unshuffledArray
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+  return shuffledArray;
+}
+
+// Function to randomly pick additional characters from the shuffled mega-array, add to password and shuffle it again
+function finishPassword() {
+  let newPassword = initialPassword;
+  while (passwordLength > newPassword.length) {
+    newPassword += newCharOptions[Math.floor(Math.random() * newCharOptions.length)];
+    // randomizeArray(password);
+    console.log(`The password after adding additional characters from mega-array is ${initialPassword}`)
+    return newPassword;
   };
-}
+};
 
-
-
-
-
-
-// Function for getting a random element from an array
-function getRandom(arr) {
-
-}
-
-// Function to generate password with user input
-function generatePassword() {
-
-}
-
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+// VALIDATION CHECKS
+console.log(`The password length is ${passwordLength}`);
+console.log(`Initial password length is ${initialPassword.length}`);
+console.log(`The initial password is ${initialPassword}`);
+console.log(`The unshuffled characters for the password are: ${charOptions}`)
+console.log(`The shuffled characters for the password are: ${newCharOptions}`)
+console.log(`The final password is ${finalPassword}`);
