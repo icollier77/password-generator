@@ -99,7 +99,7 @@ We were provided with files already built in:
 * [![HTML][html-badge]][html-url]
 * [![CSS][css-badge]][css-url]
 
-I wrote the code in:
+Basic data was provided (such as arrays of character types). I wrote the code in:
 * [![JavaScript][js-badge]][js-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
