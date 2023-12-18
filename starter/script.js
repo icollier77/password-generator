@@ -176,7 +176,7 @@ function randomizeArray(unshuffledArray) {
   return shuffledArray;
 }
 
-// Function to randomly pick additional characters from the shuffled mega-array, add to password and shuffle it again
+// Function to randomly pick additional characters from the shuffled mega-array, add to password
 function finishPassword() {
   let newPassword = initialPassword;
   while (passwordLength > newPassword.length) {
@@ -190,7 +190,7 @@ function finishPassword() {
 function randomizeString (str) {
   let newStr = str;
   for (let i = 0; i < 10; i++) {
-  newStr = str.split('').sort(function(){return 0.5-Math.random()}).join('')
+    newStr = str.split('').sort(function(){return 0.5-Math.random()}).join('')
   };
   return newStr;
 }
