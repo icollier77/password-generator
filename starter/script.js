@@ -97,8 +97,6 @@ var charOptions = [];
 var newCharOptions = [];
 const passwordBox = document.getElementById("password");
 
-
-
 function createPassword(){
 // #1 GET THE PASSWORD OPTIONS AND GENERATE BEGINNING OF PASSWORD, CREATE MEGA-ARRAY
 getPasswordOptions();
@@ -194,12 +192,3 @@ function randomizeString (str) {
   };
   return newStr;
 }
-
-// VALIDATION CHECKS
-// console.log(`The password length is ${passwordLength}`);
-// console.log(`Initial password length is ${initialPassword.length}`);
-// console.log(`The initial password is ${initialPassword}`);
-// console.log(`The unshuffled characters for the password are: ${charOptions}`)
-// console.log(`The shuffled characters for the password are: ${newCharOptions}`)
-// console.log(`The final password is ${finalPassword}`);
-// console.log(`The shuffled password is ${shuffledPassword}`);
