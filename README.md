@@ -147,7 +147,7 @@ The deployed page looks like this:
 
 ### Links to deployed project
 
-You can find the financial calculator app and its corresponding code here:
+You can find the password generator app and its corresponding code here:
 
 - [ ] [Password Generator][deployed-url]
 - [ ] [Project repo][repo-url]
